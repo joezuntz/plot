@@ -19,6 +19,18 @@ quality, but is really designed for quick-look data analysis.
 It executes arbitrary inputs, so please do not run in exposed to the web or 
 anything like that.
 
+Downloading
+-----------
+If you know what git is and how to use, then do that.
+
+Otherwise, save the file:
+
+    https://raw.github.com/joezuntz/plot/master/plot
+
+to somewhere that is included in your PATH, for example, to /usr/local/bin/plot
+Then make it executable with the command:
+
+    chmod +x /usr/local/bin/plot
 
 Usage
 -----
