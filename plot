@@ -281,9 +281,7 @@ def plot_files(files,opt,wait=False):
 		if opt.xy:
 			for xy in opt.xy:
 				x,y = xy.split(",")
-				x=int(x)
-				y=int(y)
-				plot_col(data,x,y,opt.style,filename,plotter,opt.math, opt.e, opt.c,opt.moving_average, opt.poly, opt.tex)
+				plot_col(data,x,y,opt.style,str(xy),plotter,opt.math, opt.e, opt.c,opt.moving_average, opt.poly, opt.tex)
 		if opt.xmin is not None:
 			xlim(xmin=opt.xmin)
 		if opt.xmax is not None:
