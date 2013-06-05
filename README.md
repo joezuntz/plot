@@ -2,7 +2,9 @@ plot
 ====
 
 Command line Python plotting
+
 Joe Zuntz
+
 University of Manchester
 
 Purpose
