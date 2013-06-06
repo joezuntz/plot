@@ -196,7 +196,7 @@ def plot_col(data,i,j,fmt,filename,plotter,extra_math,e,c,averaging,poly,tex):
 		y = data
 	else:
 		y=data[jx]
-	if i == 0 or n == 1:
+	if ix == -1 or n == 1:
 		x = arange(len(y))
 	else:
 		x=data[ix]
