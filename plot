@@ -213,13 +213,13 @@ def plot_col(data,i,j,fmt,filename,plotter,extra_math,e,c,averaging,poly,tex):
 		if c is None:
 			plotter(x,y,fmt,label=filename)
 		else:
-			plotter(x,y,c=data[c],label=filename)
+			plotter(x,y,c=data[cx],label=filename)
 	else:
 		if c is None:
 			plotter(x,y,data[ex],fmt=fmt,label=filename)
 		else:
 			raise ValueError("Not yet implemented error bars on colour plots")
-			plotter(x,y,data[ex],c=data[c-1],fmt=fmt,label=filename)
+			plotter(x,y,data[ex],c=data[cx],fmt=fmt,label=filename)
 
 	if poly:
 		p = np.polyfit(x,y,poly)
@@ -291,6 +291,7 @@ def plot_files(files,opt,wait=False):
 		if opt.ymax is not None:
 			ylim(ymax=opt.ymax)
 	if not opt.nolegend: legend(loc=opt.legend_pos)
+	if opt.c is not None: colorbar()
 	xlabel(opt.xtitle)
 	ylabel(opt.ytitle)
 	title(opt.title)
