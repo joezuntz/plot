@@ -21,7 +21,7 @@ anything like that.
 
 Downloading
 -----------
-If you know what git is and how to use, then do that.
+If you know what git is and how to use it, then do that.
 
 Otherwise, save the file:
 
@@ -31,6 +31,13 @@ to somewhere that is included in your PATH, for example, to /usr/local/bin/plot
 Then make it executable with the command:
 
     chmod +x /usr/local/bin/plot
+
+Homebrew
+--------
+plot is also available for Mac OSX in my homebrew repo:
+    brew tap joezuntz/homebrew-astro
+    brew install plot
+
 
 Usage
 -----
