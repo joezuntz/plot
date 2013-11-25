@@ -37,7 +37,7 @@ Homebrew
 plot is also available for Mac OSX in my homebrew repo:
 
     brew tap joezuntz/homebrew-astro
-    brew install plot
+    brew install plot --HEAD
 
 
 Usage
