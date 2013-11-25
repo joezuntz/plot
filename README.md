@@ -35,6 +35,7 @@ Then make it executable with the command:
 Homebrew
 --------
 plot is also available for Mac OSX in my homebrew repo:
+
     brew tap joezuntz/homebrew-astro
     brew install plot
 
@@ -45,7 +46,6 @@ Usage
 Basic usage is:
 
     plot filename.txt          #plot columns 1 and 2
-
     plot -x2 -y3 filename.txt  #plot columns 2 and 3
 
 There are a great many options - see them with:
