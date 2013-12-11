@@ -186,7 +186,7 @@ def plot_col(data,i,j,fmt,filename,plotter,extra_math,e,c,averaging,poly,tex):
 	try:
 		cx=int(c)-1
 	except:
-		cx=e
+		cx=c
 	try:
 		n=len(data.dtype.fields)
 	except:
