@@ -29,8 +29,8 @@ usage = "usage: %prog [options] filenames ..."
 parser = OptionParser(usage)
 parser.add_option("-x", dest="x", type='str', default=1, help="Index of x column, one-based (0 for position index), or col name if using FITS data")
 parser.add_option("-y", dest="y", type='str', default=2, help="Index of y column, or col name if using FITS data")
-parser.add_option("-e", dest="e", type='int', default=None, help="Index of error bar column, if any")
-parser.add_option("-c", dest="c", type='int', default=None, help="Index of colour column, if any")
+parser.add_option("-e", dest="e", type='str', default=None, help="Index of error bar column, if any")
+parser.add_option("-c", dest="c", type='str', default=None, help="Index of colour column, if any")
 parser.add_option("-z", "--xy", dest="xy", action="append", help="Plot pairs of columns specified as x,y")
 
 parser.add_option("--log", action="store_true", dest="log", default=False,help="Both axes logarithmic")
