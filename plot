@@ -213,7 +213,7 @@ def plot_col(data,i,j,fmt,filename,plotter,extra_math,e,c,averaging,poly,tex):
 		if c is None:
 			plotter(x,y,fmt,label=filename)
 		else:
-			plotter(x,y,c=data[cx],label=filename)
+			plotter(x,y,c=data[cx],label=filename, lw=0)
 	else:
 		if c is None:
 			plotter(x,y,data[ex],fmt=fmt,label=filename)
