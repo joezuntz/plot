@@ -219,7 +219,7 @@ def plot_col(data,i,j,fmt,filename,plotter,extra_math,e,c,averaging,poly,tex):
 			plotter(x,y,data[ex],fmt=fmt,label=filename)
 		else:
 			raise ValueError("Not yet implemented error bars on colour plots")
-			plotter(x,y,data[ex],c=data[cx],fmt=fmt,label=filename)
+			plotter(x,y,data[ex],c=data[cx],fmt=fmt,label=filename,lw=0)
 
 	if poly:
 		p = np.polyfit(x,y,poly)
