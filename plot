@@ -75,6 +75,7 @@ parser.add_option("-N", "--nofits", action="store_false", dest="use_fits", defau
 parser.add_option("-L", "--nolegend", action="store_true",  dest="nolegend", default=False, help="Do not include a legend on the plot")
 parser.add_option("-P", "--legend-position", action="store",  dest="legend_pos", default='upper left', help="Where to put the legend - 'upper left', 'center', etc.'")
 
+parser.add_option("-C", "--central-cross", action="store",  dest="central_cross", default='', help="Add a cross marker at the single specified point, e.g. -C 1.4,5.33")
 
 
 def make_spec_plotter(plotter):
@@ -296,6 +297,9 @@ def plot_files(files,opt,wait=False):
 		if opt.ymax is not None:
 			ylim(ymax=opt.ymax)
 	if not opt.nolegend: legend(loc=opt.legend_pos)
+	if opt.central_cross:
+		xp,yp = opt.central_cross.split(',')
+		plot([float(xp)], [float(yp)], 'X',markersize=20, markeredgewidth=3)
 	if opt.c is not None: colorbar()
 	xlabel(opt.xtitle)
 	ylabel(opt.ytitle)
