@@ -299,7 +299,7 @@ def plot_files(files,opt,wait=False):
 	if not opt.nolegend: legend(loc=opt.legend_pos)
 	if opt.central_cross:
 		xp,yp = opt.central_cross.split(',')
-		plot([float(xp)], [float(yp)], 'X',markersize=20, markeredgewidth=3)
+		plot([float(xp)], [float(yp)], 'x',markersize=20, markeredgewidth=3)
 	if opt.c is not None: colorbar()
 	xlabel(opt.xtitle)
 	ylabel(opt.ytitle)
