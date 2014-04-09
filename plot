@@ -29,8 +29,8 @@ usage = "usage: %prog [options] filenames ..."
 parser = OptionParser(usage)
 parser.add_option("-x", dest="x", type='str', default=1, help="Index of x column, one-based (0 for position index), or col name if using FITS data")
 parser.add_option("-y", dest="y", type='str', default=2, help="Index of y column, or col name if using FITS data")
-parser.add_option("-e", dest="e", type='int', default=None, help="Index of error bar column, if any")
-parser.add_option("-c", dest="c", type='int', default=None, help="Index of colour column, if any")
+parser.add_option("-e", dest="e", type='str', default=None, help="Index of error bar column, if any")
+parser.add_option("-c", dest="c", type='str', default=None, help="Index of colour column, if any")
 parser.add_option("-z", "--xy", dest="xy", action="append", help="Plot pairs of columns specified as x,y")
 parser.add_option("-T", "--transpose", dest="transpose", default=False, action="store_true", help="Transpose the data just after loading it.  Only applies to text, not fits.")
 
@@ -188,7 +188,7 @@ def plot_col(data,i,j,fmt,filename,plotter,extra_math,e,c,averaging,poly,tex):
 	try:
 		cx=int(c)-1
 	except:
-		cx=e
+		cx=c
 	try:
 		n=len(data.dtype.fields)
 	except:
@@ -215,13 +215,13 @@ def plot_col(data,i,j,fmt,filename,plotter,extra_math,e,c,averaging,poly,tex):
 		if c is None:
 			plotter(x,y,fmt,label=filename)
 		else:
-			plotter(x,y,c=data[cx],label=filename)
+			plotter(x,y,c=data[cx],label=filename, lw=0)
 	else:
 		if c is None:
 			plotter(x,y,data[ex],fmt=fmt,label=filename)
 		else:
 			raise ValueError("Not yet implemented error bars on colour plots")
-			plotter(x,y,data[ex],c=data[cx],fmt=fmt,label=filename)
+			plotter(x,y,data[ex],c=data[cx],fmt=fmt,label=filename,lw=0)
 
 	if poly:
 		p = np.polyfit(x,y,poly)
