@@ -32,6 +32,7 @@ parser.add_option("-y", dest="y", type='str', default=2, help="Index of y column
 parser.add_option("-e", dest="e", type='int', default=None, help="Index of error bar column, if any")
 parser.add_option("-c", dest="c", type='int', default=None, help="Index of colour column, if any")
 parser.add_option("-z", "--xy", dest="xy", action="append", help="Plot pairs of columns specified as x,y")
+parser.add_option("-T", "--transpose", dest="transpose", default=False, action="store_true", help="Transpose the data just after loading it.  Only applies to text, not fits.")
 
 parser.add_option("--log", action="store_true", dest="log", default=False,help="Both axes logarithmic")
 parser.add_option("--xl", "--xlog", action="store_true", dest="xlog", default=False, help="Logarithmic x axis")
@@ -248,6 +249,8 @@ def plot_files(files,opt,wait=False):
 				sys.stderr.write("\nWith no options I plot from standard input.\n")
 				sys.stderr.write("For help: plot --help\n")
 				sys.exit(1)
+			if opt.transpose:
+				data = data.transpose()
 			if data.ndim==2:
 				data = data[:,::opt.every]
 			else:
@@ -269,6 +272,8 @@ def plot_files(files,opt,wait=False):
 				raise ValueError("You cannot plot FITS files without pyfits installed.  It was not found")
 		else:
 			data=loadtxt(filename,unpack=True,skiprows=opt.skip)
+			if opt.transpose:
+				data = data.transpose()
 			if data.ndim==2:
 				data = data[:,::opt.every]
 			else:
