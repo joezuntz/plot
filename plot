@@ -5,8 +5,8 @@ A command line plotting program.
 
 With lots of options.
 
-Under no circumstances should you make this accessible to the web.
-Iy 
+Under NO CIRCUMSTANCES should you make this accessible to the web.
+It executes arbitrary user input.
 
 """
 
@@ -46,8 +46,9 @@ parser.add_option("-d", "--dots", dest="style", action='store_const', default="-
 parser.add_option("-l", "--linespoints", dest="style", action='store_const', default="-", const = ".-", help="Plot with lines and points")
 
 parser.add_option("-t", "--title", dest="title", default="Plot", help="Plot title")
-parser.add_option("--xt", "--xtitle", dest="xtitle", default="x", help = "Title of x axis")
-parser.add_option("--yt", "--ytitle", dest="ytitle", default="y", help = "Title of y axis")
+parser.add_option("--xt", "--xtitle", "--xlabel", dest="xtitle", default="x", help = "Title of x axis")
+parser.add_option("--yt", "--ytitle","--ylabel", dest="ytitle", default="y", help = "Title of y axis")
+parser.add_option("--ct", "--ctitle","--clabel", dest="ctitle", default=None, help = "Title of colorbar")
 parser.add_option("-w", "--tex", action="store_true",  dest="tex", default=False, help="Use latex for the labels")
 
 
@@ -300,7 +301,7 @@ def plot_files(files,opt,wait=False):
 	if opt.central_cross:
 		xp,yp = opt.central_cross.split(',')
 		plot([float(xp)], [float(yp)], 'x',markersize=20, markeredgewidth=3)
-	if opt.c is not None: colorbar()
+	if opt.c is not None: colorbar(label=opt.ctitle)
 	xlabel(opt.xtitle)
 	ylabel(opt.ytitle)
 	title(opt.title)
