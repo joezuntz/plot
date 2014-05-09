@@ -245,7 +245,7 @@ def plot_files(files,opt,wait=False):
 	for filename in files:
 		if filename=="-":
 			try:
-				data=loadtxt(stdin,unpack=True,skiprows=opt.skip)
+				data=genfromtxt(stdin,unpack=True,skiprows=opt.skip, invalid_raise=False)
 			except KeyboardInterrupt:
 				sys.stderr.write("\nWith no options I plot from standard input.\n")
 				sys.stderr.write("For help: plot --help\n")
@@ -272,7 +272,7 @@ def plot_files(files,opt,wait=False):
 			except NameError:
 				raise ValueError("You cannot plot FITS files without pyfits installed.  It was not found")
 		else:
-			data=loadtxt(filename,unpack=True,skiprows=opt.skip)
+			data=genfromtxt(filename,unpack=True,skiprows=opt.skip, invalid_raise=False)
 			if opt.transpose:
 				data = data.transpose()
 			if data.ndim==2:
