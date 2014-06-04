@@ -69,6 +69,8 @@ parser.add_option("-S", "--step", action="store_true",  dest="hist_step", defaul
 parser.add_option("-b", "--bins", action="store", type='int', dest="bins", default=0, help="The number of histogram bins")
 parser.add_option("-n", "--norm", action="store_true",  dest="norm", default=False, help="Normalize the histogram")
 
+parser.add_option("-r", "--prefix", action="store", default="", help="Read the input, find lines with the specified prefix, and plot them")
+
 parser.add_option("-F", "--fits", action="store_true", dest="force_fits", default=False, help="Force a file to be read as a FITS file regardless of its suffix")
 parser.add_option("-j", "--extension", action="store", dest="extension", default='1', help="FITS extension number to read.")
 parser.add_option("-N", "--nofits", action="store_false", dest="use_fits", default=True, help="Do not plot the file as FITS, regardless of its suffix")
@@ -234,7 +236,23 @@ def plot_col(data,i,j,fmt,filename,plotter,extra_math,e,c,averaging,poly,tex):
 		plot(poly_x,poly_y,'-',label=label)
 		
 		
-
+def load_text(filename, opt):
+	if opt.prefix:
+		data = []
+		if filename=='-':
+			f = stdin
+		else:
+			f = open(filename)
+		for line in f:
+			line = line.strip()
+			if line.startswith(opt.prefix):
+				line = line[len(opt.prefix):]
+				row = [float(x) for x in line.split()]
+				data.append(row)
+		data = np.array(data).T
+	else:
+		data=genfromtxt(filename,unpack=True,skiprows=opt.skip, invalid_raise=False)
+	return data
 
 def plot_files(files,opt,wait=False):
 	""" Loop through the listed files, loading and plotting 
@@ -246,7 +264,7 @@ def plot_files(files,opt,wait=False):
 	for filename in files:
 		if filename=="-":
 			try:
-				data=genfromtxt(stdin,unpack=True,skiprows=opt.skip, invalid_raise=False)
+				data=load_text(stdin, opt)
 			except KeyboardInterrupt:
 				sys.stderr.write("\nWith no options I plot from standard input.\n")
 				sys.stderr.write("For help: plot --help\n")
@@ -273,7 +291,7 @@ def plot_files(files,opt,wait=False):
 			except NameError:
 				raise ValueError("You cannot plot FITS files without pyfits installed.  It was not found")
 		else:
-			data=genfromtxt(filename,unpack=True,skiprows=opt.skip, invalid_raise=False)
+			data=load_text(filename, opt)
 			if opt.transpose:
 				data = data.transpose()
 			if data.ndim==2:
