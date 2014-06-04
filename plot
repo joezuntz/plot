@@ -239,7 +239,7 @@ def plot_col(data,i,j,fmt,filename,plotter,extra_math,e,c,averaging,poly,tex):
 def load_text(filename, opt):
 	if opt.prefix:
 		data = []
-		if filename=='-':
+		if filename=='-' or filename is stdin:
 			f = stdin
 		else:
 			f = open(filename)
