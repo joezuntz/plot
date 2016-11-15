@@ -251,7 +251,7 @@ def load_text(filename, opt):
 				data.append(row)
 		data = np.array(data).T
 	else:
-		data=genfromtxt(filename,unpack=True,skiprows=opt.skip, invalid_raise=False)
+		data=genfromtxt(filename,unpack=True,skip_header=opt.skip, invalid_raise=False)
 	return data
 
 def plot_files(files,opt,wait=False):
